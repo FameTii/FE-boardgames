@@ -1,11 +1,12 @@
-import './App.css';
+import "./App.css";
+import DisplayReviews from "./DisplayReviews";
+import Header from "./Header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        hehe
-      </header>
+      <Header />
+      <DisplayReviews />
     </div>
   );
 }
