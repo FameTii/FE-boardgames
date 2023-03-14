@@ -16,12 +16,6 @@ const IndividualReview = () => {
     setIsLoading(false);
   }, []);
 
-  // useEffect(()=>{
-  //   console.log(Date.parse(review.created_at));
-  //   // setDate(formatDate(Date.parse(review.created_at)));
-  //   console.log(date);
-  // }, review)
-
   return (
     <article className="individualReview">
       <div>
