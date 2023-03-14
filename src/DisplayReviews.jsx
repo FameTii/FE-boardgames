@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Review from "./Review";
-import { getReviews } from "./Controller";
+import { getReviews } from "./Api";
 import { Link } from "react-router-dom";
 
 const DisplayReviews = () => {
@@ -21,7 +21,7 @@ const DisplayReviews = () => {
         reviews.map((review) => {
           return (
             <div key={review.review_id}>
-              <Link to={`/individualreview/${review.review_id}` }>
+              <Link to={`/review/${review.review_id}` }>
                 <Review review={review} />
               </Link>
             </div>
