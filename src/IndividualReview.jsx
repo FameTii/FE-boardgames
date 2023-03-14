@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 const IndividualReview = () => {
   let { reviewId } = useParams();
@@ -17,7 +18,12 @@ const IndividualReview = () => {
   }, []);
 
   return (
-    <div>
+    <div className="individualReview">
+      <div>
+        <Link to={"/"}>
+          <button>Back to homepage</button>
+        </Link>
+      </div>
       <p className="owner">{review.owner}</p>
       <p className="date">Date: {review.created_at}</p>
       <p className="title">{review.title}</p>
