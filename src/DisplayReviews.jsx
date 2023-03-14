@@ -9,19 +9,21 @@ const DisplayReviews = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews({ setReviews });
-    setIsLoading(false);
+    getReviews().then((reviews) => {
+      setReviews(reviews);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
     <div>
       {isLoading ? (
-        <p>Loading items</p>
+        <p>Loading items...</p>
       ) : (
         reviews.map((review) => {
           return (
             <div key={review.review_id}>
-              <Link to={`/review/${review.review_id}` }>
+              <Link to={`/review/${review.review_id}`}>
                 <Review review={review} />
               </Link>
             </div>
