@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Review = ({ review }) => {
   return (
     <div className="displayReviewsBox">
@@ -7,7 +9,6 @@ const Review = ({ review }) => {
       <img className="image" src={review.review_img_url} />
       <p className="category">Category: {review.category}</p>
       <p className="designer">Designer: {review.designer}</p>
-      {/* <p className="review">{review.review_body}</p> */}
       <p className="votes">Votes: {review.votes}</p>
     </div>
   );
