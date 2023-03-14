@@ -1,38 +1,54 @@
-.App {
-  text-align: center;
+
+.displayReviewsBox {
+    overflow: hidden;
+  width: 90vw;
+  margin: 5px auto 5px auto;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px #aebe94;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 25vw 35vw auto;
+  grid-template-rows: 20vw auto auto auto;
+  grid-template-areas:
+    "owner date title"
+    "image image image"
+    "review review review"
+    "category designer votes"
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.owner {
+  grid-area: owner;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.date {
+  grid-area: date;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.title {
+  grid-area: title;
 }
 
-.App-link {
-  color: #61dafb;
+.category {
+  grid-area: category;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.designer {
+  grid-area: designer;
+}
+
+.image {
+  grid-area: image;
+  max-height: 30vw;
+}
+
+.review {
+  grid-area: review;
+  height: 30vw;
+  inline-size: 90vw;
+  overflow-wrap: break-word;
+}
+
+.votes {
+  grid-area: votes;
 }
