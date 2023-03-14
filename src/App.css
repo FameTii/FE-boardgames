@@ -1,4 +1,3 @@
-
 .displayReviewsBox {
   width: 90vw;
   margin: 5px auto 5px auto;
@@ -8,13 +7,22 @@
   background-color: white;
   display: grid;
   grid-template-columns: 30vw 35vw auto;
-  grid-template-rows: 10vw 15vw 30vw auto auto;
+  grid-template-rows: 10vw 15vw auto auto;
   grid-template-areas:
     "owner date date"
     "title title title"
     "image image image"
-    "review review review"
-    "category designer votes"
+    "category designer votes";
+}
+
+.individualReview{
+  width: 90vw;
+  margin: 5px auto 5px auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .owner {
