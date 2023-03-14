@@ -1,5 +1,4 @@
 const Review = ({ review }) => {
-  console.log(review);
   return (
     <div className="displayReviewsBox">
       <p className="owner">{review.owner}</p>
@@ -8,7 +7,7 @@ const Review = ({ review }) => {
       <img className="image" src={review.review_img_url} />
       <p className="category">Category: {review.category}</p>
       <p className="designer">Designer: {review.designer}</p>
-      <p className="review">{review.review_body}</p>
+      {/* <p className="review">{review.review_body}</p> */}
       <p className="votes">Votes: {review.votes}</p>
     </div>
   );

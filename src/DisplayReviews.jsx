@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Review from "./Review";
+import { getReviews } from "./Controller";
 
 const DisplayReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -8,12 +8,8 @@ const DisplayReviews = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios
-      .get("https://fame-boardgame-review-website.onrender.com/api/reviews")
-      .then(({ data }) => {
-        setReviews(data.reviews);
-        setIsLoading(false);
-      });
+    getReviews({ setReviews });
+    setIsLoading(false);
   }, []);
 
   return (
@@ -23,8 +19,8 @@ const DisplayReviews = () => {
       ) : (
         reviews.map((review) => {
           return (
-            <div key = {review.review_id}>
-            <Review review={review} />
+            <div key={review.review_id}>
+              <Review review={review} />
             </div>
           );
         })
