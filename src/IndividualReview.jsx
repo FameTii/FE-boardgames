@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { getReviewById } from "./Api";
+import Comments from "./Comments";
 
 const IndividualReview = () => {
   let { reviewId } = useParams();
@@ -22,21 +23,26 @@ const IndividualReview = () => {
       {isLoading ? (
         <p>Loading the review...</p>
       ) : (
-        <article className="individualReview">
+        <div>
           <div>
             <Link to={"/"}>
               <button>Back to homepage</button>
             </Link>
           </div>
-          <p className="owner">{review.owner}</p>
-          <p className="date">Date: {review.created_at}</p>
-          <p className="title">{review.title}</p>
-          <img alt="" className="image" src={review.review_img_url} />
-          <p className="category">Category: {review.category}</p>
-          <p className="designer">Designer: {review.designer}</p>
-          <p className="votes">Votes: {review.votes}</p>
-          <p className="review">{review.review_body}</p>
-        </article>
+          <article className="individualReview">
+            <p className="owner">{review.owner}</p>
+            <p className="date">Date: {review.created_at}</p>
+            <p className="title">{review.title}</p>
+            <img alt="" className="image" src={review.review_img_url} />
+            <p className="category">Category: {review.category}</p>
+            <p className="designer">Designer: {review.designer}</p>
+            <p className="votes">Votes: {review.votes}</p>
+            <p className="review">{review.review_body}</p>
+          </article>
+          <div>
+            <Comments reviewId={review.review_id} />
+          </div>
+        </div>
       )}
     </div>
   );
