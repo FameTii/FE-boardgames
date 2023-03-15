@@ -40,7 +40,7 @@ const IndividualReview = () => {
             <p className="review">{review.review_body}</p>
           </article>
           <div>
-            <Comments reviewId={review.review_id} />
+            <Comments reviewId={reviewId} />
           </div>
         </div>
       )}
