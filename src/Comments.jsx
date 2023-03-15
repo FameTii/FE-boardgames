@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getComments } from "./Api";
 
-const Comments = ({ reviewId }) => {
+const Comments = ( reviewId ) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
