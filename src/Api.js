@@ -9,7 +9,7 @@ const getReviews = () => {
     });
 };
 
-const getReviewById = ({reviewId }) => {
+const getReviewById = (reviewId ) => {
   return axios
     .get(
       `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}`
@@ -21,4 +21,14 @@ const getReviewById = ({reviewId }) => {
     });
 };
 
-export { getReviews, getReviewById };
+const getComments = (reviewId) => {
+  return axios
+    .get(
+      `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}/comments`
+    )
+    .then(({ data }) => {
+      return data.comments;
+    });
+};
+
+export { getReviews, getReviewById, getComments };
