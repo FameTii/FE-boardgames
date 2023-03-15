@@ -21,7 +21,7 @@ const getReviewById = ({ reviewId }) => {
     });
 };
 
-const getComments = ({ reviewId }) => {
+const getComments = (reviewId) => {
   return axios
     .get(
       `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}/comments`

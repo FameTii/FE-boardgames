@@ -7,7 +7,7 @@ const Comments = ({ reviewId }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    getComments({ reviewId }).then((comments) => {
+    getComments(reviewId).then((comments) => {
       console.log(comments);
       setComments(comments);
       setIsLoading(false);
