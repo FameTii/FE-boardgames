@@ -12,7 +12,7 @@ const IndividualReview = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviewById({ reviewId }).then((review) => {
+    getReviewById(reviewId ).then((review) => {
       setReview(review);
       setIsLoading(false);
     });
