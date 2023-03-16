@@ -37,8 +37,5 @@ const postComment = (reviewId, comment, username) => {
       `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}/comments`,
       { username: username, body: comment }
     )
-    .then(({ data }) => {
-      console.log(data);
-    });
 };
 export { getReviews, getReviewById, getComments, postComment };
