@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import Review from "./Review";
 import { getReviews } from "./Api";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const DisplayReviews = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews().then((reviews) => {
+    getReviews(searchParams.get("sort_by"), searchParams.get("orderBy")).then((reviews) => {
       setReviews(reviews);
       setIsLoading(false);
     });
-  }, []);
+  }, [searchParams]);
+
+  console.log(searchParams.get("sort_by"));
 
   return (
     <div>
