@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Review from "./Review";
 import { getReviews } from "./Api";
 import { Link } from "react-router-dom";
+import SortByCatergory from "./SortByCatergory";
 
 const DisplayReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -20,15 +21,18 @@ const DisplayReviews = () => {
       {isLoading ? (
         <p>Loading items...</p>
       ) : (
-        reviews.map((review) => {
-          return (
-            <div key={review.review_id}>
-              <Link to={`/review/${review.review_id}`}>
-                <Review review={review} />
-              </Link>
-            </div>
-          );
-        })
+        <div>
+          <SortByCatergory />
+          {reviews.map((review) => {
+            return (
+              <div key={review.review_id}>
+                <Link to={`/review/${review.review_id}`}>
+                  <Review review={review} />
+                </Link>
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );
