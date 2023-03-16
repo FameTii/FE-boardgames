@@ -7,21 +7,32 @@ const Voting = ({ review }) => {
   const [hasVoted, setHasVoted] = useState(false);
   const [error, setError] = useState(null);
 
-
   const likeVote = () => {
     setUserVote("Like");
     setHasVoted(true);
-    updateVotes(review.review_id, 1).then(() => {
-      setVote(vote + 1);
-    }).catch((err) => {setError({err})});
+    updateVotes(review.review_id, 1)
+      .then(() => {
+        setVote(vote + 1);
+        setError(null);
+      })
+      .catch((err) => {
+        setError({ err });
+        setHasVoted(false);
+      });
   };
 
   const dislikeVote = () => {
     setUserVote("Dislike");
     setHasVoted(true);
-    updateVotes(review.review_id, -1).then(() => {
-      setVote(vote - 1);
-    }).catch((err) => {setError({err})});
+    updateVotes(review.review_id, -1)
+      .then(() => {
+        setVote(vote - 1);
+        setError(null);
+      })
+      .catch((err) => {
+        setError({ err });
+        setHasVoted(false);
+      });
   };
 
   const undoVote = () => {
@@ -36,11 +47,11 @@ const Voting = ({ review }) => {
     setHasVoted(false);
   };
 
-  if (error) {
-    return <p>Please check your internet connection</p>
-  }
   return (
     <div>
+      <div style={{ display: error ? "block" : "none" }}>
+        <p>Please check your internet connection</p>
+      </div>
       <div style={{ display: hasVoted ? "none" : "block" }}>
         <button className="likeButton" onClick={likeVote}>
           Like
@@ -53,10 +64,10 @@ const Voting = ({ review }) => {
         Thanks for voting
         <button onClick={undoVote}>Undo</button>
       </div>
+
       <p>Votes: {vote}</p>
     </div>
   );
 };
 
 export default Voting;
-
