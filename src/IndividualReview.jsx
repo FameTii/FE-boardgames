@@ -17,8 +17,7 @@ const IndividualReview = () => {
       setIsLoading(false);
     });
   }, []);
-  console.log(Comments.length);
-
+  
   return (
     <div>
       {isLoading ? (

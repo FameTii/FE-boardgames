@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import { getComments } from "./Api";
+import PostComments from "./PostComments";
 
 const Comments = ({ reviewId }) => {
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     getComments(reviewId).then((comments) => {
-      console.log(comments);
       setComments(comments);
       setIsLoading(false);
     });
-  }, []);
+  }, [newComment]);
 
   return (
     <div className="commentsBox">
       <p>Comments ({comments.length})</p>
+      <PostComments reviewId={reviewId} setNewComment={setNewComment} />
 
       {isLoading ? (
         <p>Loading Comments...</p>
