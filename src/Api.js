@@ -1,7 +1,8 @@
 import axios from "axios";
 import { formatDate } from "./utilities";
 
-const getReviews = () => {
+const getReviews = (category) => {
+  // if(category !== ""){}
   return axios
     .get("https://fame-boardgame-review-website.onrender.com/api/reviews")
     .then(({ data }) => {
