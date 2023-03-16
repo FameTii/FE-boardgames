@@ -2,26 +2,30 @@ import { useEffect, useState } from "react";
 import { postComment } from "./Api";
 
 const PostComments = ({ reviewId, setNewComment }) => {
-  const [comment, setComment] = useState([]);
+  const [comment, setComment] = useState("");
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const postNewComment = (event) => {
-    event.preventDefault();
-    if (event.target[0].value === "") {
+  const onChangeInput = (event) => {
+    if (event.target.value === "") {
       setIsEmpty(true);
       return;
     }
+    setComment(event.target.value);
+  };
+
+  const postNewComment = (event) => {
+    event.preventDefault();
     setIsEmpty(false);
     setError(null);
-    setComment(event.target[0].value);
     setIsLoading(true);
-    postComment(reviewId, event.target[0].value, "grumpy19")
+    postComment(reviewId, comment, "grumpy19")
       .then((obj) => {
+        console.log("demo");
         setNewComment(obj);
-        event.target[0].value = "";
         setIsLoading(false);
+        setComment("");
       })
       .catch((err) => {
         setError({ err });
@@ -38,7 +42,12 @@ const PostComments = ({ reviewId, setNewComment }) => {
           <p>Posting Comment...</p>
         ) : (
           <form onSubmit={postNewComment}>
-            <input className="addComment" placeholder="Post a comment"></input>
+            <input
+              className="addComment"
+              placeholder="Post a comment"
+              onChange={onChangeInput}
+              value={comment}
+            ></input>
             <button type="submit">Post</button>
           </form>
         )}
