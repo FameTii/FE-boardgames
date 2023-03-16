@@ -33,10 +33,24 @@ const getComments = (reviewId) => {
 };
 
 const updateVotes = (reviewId, value) => {
-  return axios.patch(`https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}`, {inc_votes: value})
-  .then(({data}) => {
-    return data.inc_votes
-  })
+  return axios
+    .patch(
+      `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}`,
+      { inc_votes: value }
+    )
+    .then(({ data }) => {
+      return data.inc_votes;
+    });
 };
 
-export { getReviews, getReviewById, getComments, updateVotes};
+const getCategory = (category) => {
+  return axios
+    .get(
+      `https://fame-boardgame-review-website.onrender.com/api/reviews?category=${category}`
+    )
+    .then(({ data }) => {
+      return data.reviews;
+    });
+};
+
+export { getReviews, getReviewById, getComments, updateVotes, getCategory };
