@@ -7,6 +7,7 @@ const DisplayReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+
   useEffect(() => {
     setIsLoading(true);
     getReviews().then((reviews) => {
@@ -20,6 +21,7 @@ const DisplayReviews = () => {
       {isLoading ? (
         <p>Loading items...</p>
       ) : (
+        
         reviews.map((review) => {
           return (
             <div key={review.review_id}>
