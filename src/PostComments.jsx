@@ -10,13 +10,19 @@ const PostComments = ({ reviewId, setNewComment }) => {
   const onChangeInput = (event) => {
     if (event.target.value === "") {
       setIsEmpty(true);
-      return;
+    } else {
+      setIsEmpty(false);
     }
     setComment(event.target.value);
   };
+  
 
   const postNewComment = (event) => {
     event.preventDefault();
+    if (comment.trim() === "") {
+      setIsEmpty(true);
+      return;
+    }
     setIsEmpty(false);
     setError(null);
     setIsLoading(true);
@@ -51,11 +57,7 @@ const PostComments = ({ reviewId, setNewComment }) => {
             <button type="submit">Post</button>
           </form>
         )}
-        {isEmpty ? (
-          <p>type something in if you want to post something</p>
-        ) : (
-          <p></p>
-        )}
+        {isEmpty && <p>Write something if you want to post something</p>}
       </div>
     </div>
   );
