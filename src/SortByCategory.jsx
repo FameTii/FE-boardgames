@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getCategory } from "./Api";
+import { getReviews } from "./Api";
 import Review from "./Review";
 import { Link } from "react-router-dom";
 
@@ -10,11 +10,15 @@ const SortByCategory = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getCategory(category).then((data) => {
+    if (category === undefined) {
+      category = "";
+    }
+    console.log(category);
+    getReviews(category, "", "").then((data) => {
       setReviews(data);
       setIsLoading(false);
     });
-  }, []);
+  }, [category]);
 
   return (
     <div>

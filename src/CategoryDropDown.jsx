@@ -10,12 +10,7 @@ const CategoryDropDown = () => {
   }, [category]);
 
   const redirectURL = () => {
-    console.log(category);
-    if (category === "") {
-      return navigate(`/`);
-    } else {
       return navigate(`/categories/${category}`);
-    }
   };
 
   return (

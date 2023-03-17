@@ -9,7 +9,7 @@ const DisplayReviews = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews().then((reviews) => {
+    getReviews("", "", "").then((reviews) => {
       setReviews(reviews);
       setIsLoading(false);
     });

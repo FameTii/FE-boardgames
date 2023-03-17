@@ -1,13 +1,36 @@
 import axios from "axios";
 import { formatDate } from "./utilities";
 
-const getReviews = (category) => {
-  // if(category !== ""){}
-  return axios
-    .get("https://fame-boardgame-review-website.onrender.com/api/reviews")
-    .then(({ data }) => {
-      return data.reviews;
-    });
+const getReviews = (category, sortBy, orderBy) => {
+  if (category === "") {
+    category = null;
+  }
+  if (sortBy === "") {
+    sortBy = null;
+  }
+  if (orderBy === "") {
+    orderBy = null;
+  }
+  let url = "https://fame-boardgame-review-website.onrender.com/api/reviews";
+  if (category !== null && sortBy !== null && orderBy !== null) {
+    url += `?category=${category}&sortBy=${sortBy}&orderBy=${orderBy}`;
+  } else if (sortBy === null && orderBy !== null && category !== null) {
+    url += `?category=${category}&orderBy=${orderBy}`;
+  } else if (orderBy === null && sortBy !== null && category !== null) {
+    url += `?category=${category}&sortBy=${sortBy}`;
+  } else if (sortBy !== null && orderBy !== null && category === null) {
+    url += `?sortBy=${sortBy}&orderBy=${orderBy}`;
+  } else if (sortBy === null && orderBy === null && category !== null) {
+    url += `?category=${category}`;
+  } else if (sortBy === null && orderBy !== null && category === null) {
+    url += `?orderBy=${orderBy}`;
+  } else if (orderBy === null && sortBy !== null && category === null) {
+    url += `?sortBy=${sortBy}`;
+  }
+  console.log(url);
+  return axios.get(url).then(({ data }) => {
+    return data.reviews;
+  });
 };
 
 const getReviewById = (reviewId) => {
@@ -44,14 +67,4 @@ const updateVotes = (reviewId, value) => {
     });
 };
 
-const getCategory = (category) => {
-  return axios
-    .get(
-      `https://fame-boardgame-review-website.onrender.com/api/reviews?category=${category}`
-    )
-    .then(({ data }) => {
-      return data.reviews;
-    });
-};
-
-export { getReviews, getReviewById, getComments, updateVotes, getCategory };
+export { getReviews, getReviewById, getComments, updateVotes };
