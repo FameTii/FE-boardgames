@@ -13,7 +13,6 @@ const SortByCategory = () => {
     if (category === undefined) {
       category = "";
     }
-    console.log(category);
     getReviews(category, "", "").then((data) => {
       setReviews(data);
       setIsLoading(false);

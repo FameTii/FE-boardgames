@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { postComment } from "./Api";
 
 const PostComments = ({ reviewId, setNewComment }) => {
@@ -28,7 +28,6 @@ const PostComments = ({ reviewId, setNewComment }) => {
     setIsLoading(true);
     postComment(reviewId, comment, "grumpy19")
       .then((obj) => {
-        console.log("demo");
         setNewComment(obj.data);
         setIsLoading(false);
         setComment("");

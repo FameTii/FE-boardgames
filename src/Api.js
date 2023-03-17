@@ -56,14 +56,12 @@ const getComments = (reviewId) => {
 };
 
 const postComment = (reviewId, comment, username) => {
-  return axios
-    .post(
-      `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}/comments`,
-      { username: username, body: comment }
-    )
+  return axios.post(
+    `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}/comments`,
+    { username: username, body: comment }
+  );
 };
 
-export { getReviews, getReviewById, getComments, postComment };
 const updateVotes = (reviewId, value) => {
   return axios
     .patch(
@@ -75,4 +73,4 @@ const updateVotes = (reviewId, value) => {
     });
 };
 
-export { getReviews, getReviewById, getComments, updateVotes };
+export { getReviews, getReviewById, getComments, postComment, updateVotes };
