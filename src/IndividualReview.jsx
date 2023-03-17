@@ -3,21 +3,22 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { getReviewById } from "./Api";
 import Comments from "./Comments";
+import Voting from "./Voting";
 
 const IndividualReview = () => {
   let { reviewId } = useParams();
   const [review, setReview] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [date, setDate] = useState("");
+
 
   useEffect(() => {
     setIsLoading(true);
-    getReviewById(reviewId ).then((review) => {
+    getReviewById(reviewId).then((review) => {
       setReview(review);
       setIsLoading(false);
     });
   }, []);
-  
+
   return (
     <div>
       {isLoading ? (
@@ -28,6 +29,11 @@ const IndividualReview = () => {
             <Link to={"/"}>
               <button>Back to homepage</button>
             </Link>
+
+            <div>
+              <Voting review={review}/>
+            </div>
+
           </div>
           <article className="individualReview">
             <p className="owner">{review.owner}</p>
@@ -36,7 +42,6 @@ const IndividualReview = () => {
             <img alt="" className="image" src={review.review_img_url} />
             <p className="category">Category: {review.category}</p>
             <p className="designer">Designer: {review.designer}</p>
-            <p className="votes">Votes: {review.votes}</p>
             <p className="review">{review.review_body}</p>
           </article>
           <div>
