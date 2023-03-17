@@ -8,7 +8,7 @@ const SortBy = () => {
 
   return (
     <div>
-      <label>Filter by:</label>
+      <label>Sort by:</label>
       <select
         onChange={(e) => {
           setSearchParams(e.target.value);
@@ -25,7 +25,7 @@ const SortBy = () => {
         <option value="created_at">created at</option>
       </select>
 
-      <label>Sort by</label>
+      <label>Order by</label>
       <select
         onChange={(e) => {
           setSearchParams(e.target.value);
