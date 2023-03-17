@@ -4,7 +4,7 @@ import { formatDate } from "./utilities";
 const getReviews = (category, sortBy, orderBy) => {
   return axios
     .get("https://fame-boardgame-review-website.onrender.com/api/reviews", {
-      params: { category,  }
+      params: { category, sortBy, orderBy }
 
     })
     .then(({ data }) => {

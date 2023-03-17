@@ -1,16 +1,26 @@
 import { useEffect, useState } from "react";
-import { useNavigate, redirect } from "react-router";
+// import { useNavigate, redirect } from "react-router";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 const CategoryDropDown = () => {
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const redirectURL = (e) => {
     if (e.target.value === "all") {
-      navigate("/");
+      navigate({ pathname: "/", search: `?${searchParams}` });
     }
-
-    if (e.target.value !== "all") navigate(`/categories/${e.target.value}`);
+    if (e.target.value !== "all") {
+      navigate({
+        pathname: `/categories/${e.target.value}`,
+        search: `?${searchParams}`,
+      });
+    }
   };
 
   return (

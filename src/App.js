@@ -3,6 +3,7 @@ import "./App.css";
 import DisplayReviews from "./DisplayReviews";
 import Header from "./Header";
 import IndividualReview from "./IndividualReview";
+import SortBy from "./SortBy";
 
 function App() {
   return (
