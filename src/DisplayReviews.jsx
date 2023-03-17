@@ -7,6 +7,7 @@ const DisplayReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+
   useEffect(() => {
     setIsLoading(true);
     getReviews("", "", "").then((reviews) => {
@@ -31,6 +32,7 @@ const DisplayReviews = () => {
             );
           })}
         </div>
+
       )}
     </div>
   );
