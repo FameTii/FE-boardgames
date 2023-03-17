@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getComments } from "./Api";
+import DeleteComment from "./DeleteComment";
 import PostComments from "./PostComments";
 
 const Comments = ({ reviewId }) => {
@@ -35,10 +36,11 @@ const Comments = ({ reviewId }) => {
 
       {isLoading ? (
         <p>Loading Comments...</p>
-      ) : (
-        comments.map((comment) => {
-          return (
-            <div className="comments" key={comment.comment_id}>
+        ) : (
+          comments.map((comment) => {
+            return (
+              <div className="comments" key={comment.comment_id}>
+              <DeleteComment />
               <p id="commentAuthor">{comment.author}:</p>
               <p id="commentBody">{comment.body}</p>
             </div>
