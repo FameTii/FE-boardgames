@@ -15,10 +15,23 @@ const Comments = ({ reviewId }) => {
     });
   }, [newComment]);
 
+  console.log(newComment);
+
   return (
     <div className="commentsBox">
       <p>Comments ({comments.length})</p>
       <PostComments reviewId={reviewId} setNewComment={setNewComment} />
+
+      <div>
+        {newComment ? (
+          <div className="newUsercomments" key={newComment.comment_id}>
+            <p id="commentAuthor">{newComment.author}:</p>
+            <p id="commentBody">{newComment.body}</p>
+          </div>
+        ) : (
+          <p></p>
+        )}
+      </div>
 
       {isLoading ? (
         <p>Loading Comments...</p>

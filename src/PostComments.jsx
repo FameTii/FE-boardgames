@@ -23,7 +23,7 @@ const PostComments = ({ reviewId, setNewComment }) => {
     postComment(reviewId, comment, "grumpy19")
       .then((obj) => {
         console.log("demo");
-        setNewComment(obj);
+        setNewComment(obj.data);
         setIsLoading(false);
         setComment("");
       })
