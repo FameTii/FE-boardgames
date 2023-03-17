@@ -10,7 +10,7 @@ const DisplayReviews = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews(searchParams.get("sort_by"), searchParams.get("orderBy")).then((reviews) => {
+    getReviews("", searchParams.get("sort_by"), searchParams.get("orderBy")).then((reviews) => {
       setReviews(reviews);
       setIsLoading(false);
     });

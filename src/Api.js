@@ -1,7 +1,10 @@
 import axios from "axios";
 import { formatDate } from "./utilities";
 
-const getReviews = (sortBy, orderBy) => {
+const getReviews = (category, sortBy, orderBy) => {
+  if (category === "") {
+    category = null;
+  }
   if (sortBy === "") {
     sortBy = null;
   }
@@ -9,14 +12,21 @@ const getReviews = (sortBy, orderBy) => {
     orderBy = null;
   }
   let url = "https://fame-boardgame-review-website.onrender.com/api/reviews";
-  if ((sortBy !== null) & (orderBy !== null)) {
+  if (category !== null && sortBy !== null && orderBy !== null) {
+    url += `?category=${category}&sortBy=${sortBy}&orderBy=${orderBy}`;
+  } else if (sortBy === null && orderBy !== null && category !== null) {
+    url += `?category=${category}&orderBy=${orderBy}`;
+  } else if (orderBy === null && sortBy !== null && category !== null) {
+    url += `?category=${category}&sortBy=${sortBy}`;
+  } else if (sortBy !== null && orderBy !== null && category === null) {
     url += `?sortBy=${sortBy}&orderBy=${orderBy}`;
-  } else if ((sortBy === null) & (orderBy !== null)) {
+  } else if (sortBy === null && orderBy === null && category !== null) {
+    url += `?category=${category}`;
+  } else if (sortBy === null && orderBy !== null && category === null) {
     url += `?orderBy=${orderBy}`;
-  } else if ((orderBy === null) & (sortBy !== null)) {
+  } else if (orderBy === null && sortBy !== null && category === null) {
     url += `?sortBy=${sortBy}`;
   }
-  console.log(url);
   return axios.get(url).then(({ data }) => {
     return data.reviews;
   });
