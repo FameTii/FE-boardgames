@@ -1,12 +1,35 @@
 import axios from "axios";
 import { formatDate } from "./utilities";
 
-const getReviews = () => {
-  return axios
-    .get("https://fame-boardgame-review-website.onrender.com/api/reviews")
-    .then(({ data }) => {
-      return data.reviews;
-    });
+const getReviews = (category, sortBy, orderBy) => {
+  if (category === "") {
+    category = null;
+  }
+  if (sortBy === "") {
+    sortBy = null;
+  }
+  if (orderBy === "") {
+    orderBy = null;
+  }
+  let url = "https://fame-boardgame-review-website.onrender.com/api/reviews";
+  if (category !== null && sortBy !== null && orderBy !== null) {
+    url += `?category=${category}&sortBy=${sortBy}&orderBy=${orderBy}`;
+  } else if (sortBy === null && orderBy !== null && category !== null) {
+    url += `?category=${category}&orderBy=${orderBy}`;
+  } else if (orderBy === null && sortBy !== null && category !== null) {
+    url += `?category=${category}&sortBy=${sortBy}`;
+  } else if (sortBy !== null && orderBy !== null && category === null) {
+    url += `?sortBy=${sortBy}&orderBy=${orderBy}`;
+  } else if (sortBy === null && orderBy === null && category !== null) {
+    url += `?category=${category}`;
+  } else if (sortBy === null && orderBy !== null && category === null) {
+    url += `?orderBy=${orderBy}`;
+  } else if (orderBy === null && sortBy !== null && category === null) {
+    url += `?sortBy=${sortBy}`;
+  }
+  return axios.get(url).then(({ data }) => {
+    return data.reviews;
+  });
 };
 
 const getReviewById = (reviewId) => {
@@ -42,10 +65,14 @@ const postComment = (reviewId, comment, username) => {
 
 export { getReviews, getReviewById, getComments, postComment };
 const updateVotes = (reviewId, value) => {
-  return axios.patch(`https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}`, {inc_votes: value})
-  .then(({data}) => {
-    return data.inc_votes
-  })
+  return axios
+    .patch(
+      `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}`,
+      { inc_votes: value }
+    )
+    .then(({ data }) => {
+      return data.inc_votes;
+    });
 };
 
-export { getReviews, getReviewById, getComments, updateVotes};
+export { getReviews, getReviewById, getComments, updateVotes };

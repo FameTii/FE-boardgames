@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-import Review from "./Review";
+import { useParams } from "react-router";
 import { getReviews } from "./Api";
+import Review from "./Review";
 import { Link } from "react-router-dom";
 
-const DisplayReviews = () => {
+const SortByCategory = () => {
+  let { category } = useParams();
   const [reviews, setReviews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-    getReviews("", "", "").then((reviews) => {
-      setReviews(reviews);
+    if (category === undefined) {
+      category = "";
+    }
+    console.log(category);
+    getReviews(category, "", "").then((data) => {
+      setReviews(data);
       setIsLoading(false);
     });
-  }, []);
+  }, [category]);
 
   return (
     <div>
@@ -32,10 +36,9 @@ const DisplayReviews = () => {
             );
           })}
         </div>
-
       )}
     </div>
   );
 };
 
-export default DisplayReviews;
+export default SortByCategory;
