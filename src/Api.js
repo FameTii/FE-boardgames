@@ -27,7 +27,6 @@ const getReviews = (category, sortBy, orderBy) => {
   } else if (orderBy === null && sortBy !== null && category === null) {
     url += `?sortBy=${sortBy}`;
   }
-  console.log(url);
   return axios.get(url).then(({ data }) => {
     return data.reviews;
   });
