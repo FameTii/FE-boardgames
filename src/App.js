@@ -9,10 +9,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <SortBy />
       <Routes>
         <Route path="/" element={<DisplayReviews />} />
         <Route path="/review/:reviewId" element={<IndividualReview />} />
+        <Route path="/categories/:category" element={<DisplayReviews />} />
       </Routes>
     </div>
   );
