@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
-import Review from "./Review";
+import { useParams } from "react-router";
 import { getReviews } from "./Api";
+import Review from "./Review";
 import { Link } from "react-router-dom";
+import CategoryDropDown from "./CategoryDropDown";
 
 const DisplayReviews = () => {
-  const [reviews, setReviews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  let { category } = useParams();
 
+  const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-    getReviews("", "", "").then((reviews) => {
-      setReviews(reviews);
+    getReviews(category, "", "").then((data) => {
+      setReviews(data);
       setIsLoading(false);
     });
-  }, []);
+  }, [category]);
 
   return (
     <div>
+      <CategoryDropDown/>
       {isLoading ? (
         <p>Loading items...</p>
       ) : (
@@ -32,7 +35,6 @@ const DisplayReviews = () => {
             );
           })}
         </div>
-
       )}
     </div>
   );

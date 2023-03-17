@@ -5,12 +5,12 @@ const CategoryDropDown = () => {
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    redirectURL();
-  }, [category]);
+  const redirectURL = (e) => {
+    if (e.target.value === "all") {
+      navigate("/");
+    }
 
-  const redirectURL = () => {
-      return navigate(`/categories/${category}`);
+    if (e.target.value !== "all") navigate(`/categories/${e.target.value}`);
   };
 
   return (
@@ -19,9 +19,11 @@ const CategoryDropDown = () => {
       <select
         onChange={(e) => {
           setCategory(e.target.value);
+          redirectURL(e);
         }}
+        value={category}
       >
-        <option value="">show all</option>
+        <option value="all">show all</option>
         <option value="strategy">strategy</option>
         <option value="hidden-roles">hidden-roles</option>
         <option value="dexterity">dexterity</option>

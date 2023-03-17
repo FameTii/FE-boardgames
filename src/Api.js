@@ -2,34 +2,14 @@ import axios from "axios";
 import { formatDate } from "./utilities";
 
 const getReviews = (category, sortBy, orderBy) => {
-  if (category === "") {
-    category = null;
-  }
-  if (sortBy === "") {
-    sortBy = null;
-  }
-  if (orderBy === "") {
-    orderBy = null;
-  }
-  let url = "https://fame-boardgame-review-website.onrender.com/api/reviews";
-  if (category !== null && sortBy !== null && orderBy !== null) {
-    url += `?category=${category}&sortBy=${sortBy}&orderBy=${orderBy}`;
-  } else if (sortBy === null && orderBy !== null && category !== null) {
-    url += `?category=${category}&orderBy=${orderBy}`;
-  } else if (orderBy === null && sortBy !== null && category !== null) {
-    url += `?category=${category}&sortBy=${sortBy}`;
-  } else if (sortBy !== null && orderBy !== null && category === null) {
-    url += `?sortBy=${sortBy}&orderBy=${orderBy}`;
-  } else if (sortBy === null && orderBy === null && category !== null) {
-    url += `?category=${category}`;
-  } else if (sortBy === null && orderBy !== null && category === null) {
-    url += `?orderBy=${orderBy}`;
-  } else if (orderBy === null && sortBy !== null && category === null) {
-    url += `?sortBy=${sortBy}`;
-  }
-  return axios.get(url).then(({ data }) => {
-    return data.reviews;
-  });
+  return axios
+    .get("https://fame-boardgame-review-website.onrender.com/api/reviews", {
+      params: { category,  }
+
+    })
+    .then(({ data }) => {
+      return data.reviews;
+    });
 };
 
 const getReviewById = (reviewId) => {
@@ -50,7 +30,6 @@ const getComments = (reviewId) => {
       `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}/comments`
     )
     .then(({ data }) => {
-      console.log(data);
       return data.comments;
     });
 };

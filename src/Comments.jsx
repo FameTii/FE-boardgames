@@ -16,7 +16,6 @@ const Comments = ({ reviewId }) => {
     });
   }, [newComment]);
 
-  console.log(newComment);
 
   return (
     <div className="commentsBox">
