@@ -1,8 +1,7 @@
 import axios from "axios";
 import { formatDate } from "./utilities";
 
-// const apiUrl = "https://fame-boardgame-review-website.onrender.com/api/reviews";
-const apiUrl = "http://localhost:9090/api/reviews/";
+const apiUrl = "https://fame-boardgame-review-website.onrender.com/api/reviews/";
 
 const getReviews = (category, sortBy, orderBy) => {
   return axios

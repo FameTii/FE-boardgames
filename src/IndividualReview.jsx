@@ -10,7 +10,6 @@ const IndividualReview = () => {
   const [review, setReview] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-
   useEffect(() => {
     setIsLoading(true);
     getReviewById(reviewId).then((review) => {
@@ -31,9 +30,8 @@ const IndividualReview = () => {
             </Link>
 
             <div>
-              <Voting review={review}/>
+              <Voting review={review} />
             </div>
-
           </div>
           <article className="individualReview">
             <p className="owner">{review.owner}</p>
