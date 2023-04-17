@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useNavigate, redirect } from "react-router";
+import { useSearchParams } from "react-router-dom";
+import SortBy from "./sortBy";
 
 const CategoryDropDown = () => {
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const navigate = useNavigate();
 
   const redirectURL = (e) => {
-    if (e.target.value === "all") {
-      navigate("/");
-    }
-
-    if (e.target.value !== "all") navigate(`/categories/${e.target.value}`);
+    // if (e.target.value === "all") {
+    //   navigate("/");
+    // }
+    // if (e.target.value !== "all") navigate(`/categories/${e.target.value}`);
   };
 
   return (
@@ -18,10 +21,12 @@ const CategoryDropDown = () => {
       <label>Sort by category </label>
       <select
         onChange={(e) => {
-          setCategory(e.target.value);
-          redirectURL(e);
+          setSearchParams(e.target.value);
+          const newSearchParams = new URLSearchParams(searchParams);
+          newSearchParams.set("category", e.target.value);
+          setSearchParams(newSearchParams);
         }}
-        value={category}
+        // value={category}
       >
         <option value="all">show all</option>
         <option value="strategy">strategy</option>
@@ -32,6 +37,7 @@ const CategoryDropDown = () => {
         <option value="deck-building">deck-building</option>
         <option value="engine-building">engine-building</option>
       </select>
+      <SortBy />
     </div>
   );
 };

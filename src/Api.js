@@ -1,11 +1,13 @@
 import axios from "axios";
 import { formatDate } from "./utilities";
 
+// const apiUrl = "https://fame-boardgame-review-website.onrender.com/api/reviews";
+const apiUrl = "http://localhost:9090/api/reviews/";
+
 const getReviews = (category, sortBy, orderBy) => {
   return axios
-    .get("https://fame-boardgame-review-website.onrender.com/api/reviews", {
-      params: { category,  }
-
+    .get(apiUrl, {
+      params: { category, sortBy, orderBy },
     })
     .then(({ data }) => {
       return data.reviews;
@@ -13,40 +15,29 @@ const getReviews = (category, sortBy, orderBy) => {
 };
 
 const getReviewById = (reviewId) => {
-  return axios
-    .get(
-      `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}`
-    )
-    .then(({ data }) => {
-      const review = data.review;
-      review.created_at = formatDate(review.created_at);
-      return review;
-    });
+  return axios.get(apiUrl + `${reviewId}`).then(({ data }) => {
+    const review = data.review;
+    review.created_at = formatDate(review.created_at);
+    return review;
+  });
 };
 
 const getComments = (reviewId) => {
-  return axios
-    .get(
-      `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}/comments`
-    )
-    .then(({ data }) => {
-      return data.comments;
-    });
+  return axios.get(apiUrl + `${reviewId}/comments`).then(({ data }) => {
+    return data.comments;
+  });
 };
 
 const postComment = (reviewId, comment, username) => {
-  return axios.post(
-    `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}/comments`,
-    { username: username, body: comment }
-  );
+  return axios.post(apiUrl + `${reviewId}/comments`, {
+    username: username,
+    body: comment,
+  });
 };
 
 const updateVotes = (reviewId, value) => {
   return axios
-    .patch(
-      `https://fame-boardgame-review-website.onrender.com/api/reviews/${reviewId}`,
-      { inc_votes: value }
-    )
+    .patch(apiUrl + `${reviewId}`, { inc_votes: value })
     .then(({ data }) => {
       return data.inc_votes;
     });

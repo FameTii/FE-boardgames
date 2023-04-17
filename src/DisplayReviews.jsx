@@ -4,23 +4,30 @@ import { getReviews } from "./Api";
 import Review from "./Review";
 import { Link } from "react-router-dom";
 import CategoryDropDown from "./CategoryDropDown";
+import { useSearchParams } from "react-router-dom";
 
 const DisplayReviews = () => {
-  let { category } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getReviews(category, "", "").then((data) => {
+    let category = searchParams.get("category");
+    let sortBy = searchParams.get("sort_by");
+    let orderBy = searchParams.get("order_by");
+
+    getReviews(category, sortBy, orderBy).then((data) => {
       setReviews(data);
       setIsLoading(false);
     });
-  }, [category]);
+  }, [searchParams]);
+  console.log(searchParams.get("sort_by"));
+  console.log(searchParams.get("order_by"));
 
   return (
     <div>
-      <CategoryDropDown/>
+      <CategoryDropDown />
       {isLoading ? (
         <p>Loading items...</p>
       ) : (
