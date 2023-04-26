@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getComments } from "./Api";
-import DeleteComment from "./DeleteComment";
+import { deleteComment, getComments } from "./Api";
 import PostComments from "./PostComments";
 
 const Comments = ({ reviewId }) => {
@@ -14,7 +13,22 @@ const Comments = ({ reviewId }) => {
       setComments(comments);
       setIsLoading(false);
     });
-  }, [newComment]);
+  }, [reviewId]);
+
+  const deleteCommentById = (commentId) => {
+    deleteComment(commentId)
+      .then(() => {
+        setComments(
+          comments.filter((comment) => comment.comment_id !== commentId)
+        );
+      })
+      .then(() => {
+        window.location.reload(true);
+      })
+      .catch((error) => {
+        console.log("Error deleting comment:", error);
+      });
+  };
 
   return (
     <div className="commentsBox">
@@ -38,9 +52,17 @@ const Comments = ({ reviewId }) => {
         comments.map((comment) => {
           return (
             <div className="comments" key={comment.comment_id}>
-              <DeleteComment />
               <p id="commentAuthor">{comment.author}:</p>
               <p id="commentBody">{comment.body}</p>
+              <div>
+                <button
+                  onClick={() => {
+                    deleteCommentById(`${comment.comment_id}`);
+                  }}
+                >
+                  DELETE
+                </button>
+              </div>
             </div>
           );
         })

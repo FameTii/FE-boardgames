@@ -24,24 +24,28 @@ const IndividualReview = () => {
         <p>Loading the review...</p>
       ) : (
         <div>
-          <div>
-            <Link to={"/"}>
-              <button>Back to homepage</button>
-            </Link>
-
-            <div>
-              <Voting review={review} />
-            </div>
-          </div>
           <article className="individualReview">
-            <p className="owner">{review.owner}</p>
-            <p className="date">Date: {review.created_at}</p>
-            <p className="title">{review.title}</p>
-            <img alt="" className="image" src={review.review_img_url} />
-            <p className="category">Category: {review.category}</p>
-            <p className="designer">Designer: {review.designer}</p>
-            <p className="review">{review.review_body}</p>
+            <div className="indRevMain">
+              <p className="individualTitle">{review.title}</p>
+              <img
+                alt=""
+                className="individualImage"
+                src={review.review_img_url}
+              />
+            </div>
+            <div className="indRevSub">
+              <p className="individualOwner">Author: {review.owner}</p>
+              <p className="individualDate">Date: {review.created_at}</p>
+              <p className="individualCategory">Category: {review.category}</p>
+              <p className="individualDesigner">Designer: {review.designer}</p>
+              <p className="individualReviewBody">{review.review_body}</p>
+              <br />
+              <div className="likeDislike">
+                <Voting review={review} />
+              </div>
+            </div>
           </article>
+
           <div>
             <Comments reviewId={reviewId} />
           </div>

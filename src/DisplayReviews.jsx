@@ -1,33 +1,37 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import { getReviews } from "./Api";
 import Review from "./Review";
-import { Link, useSearchParams } from "react-router-dom";
-import CategoryDropDown from "./CategoryDropDown";
+import { Link } from "react-router-dom";
+import SortBy from "./SortBy";
+import { useSearchParams } from "react-router-dom";
 
 const DisplayReviews = () => {
-  let { category } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getReviews(category, "", "").then((data) => {
+    let category = searchParams.get("category");
+    let sortBy = searchParams.get("sort_by");
+    let orderBy = searchParams.get("order_by");
+
+    getReviews(category, sortBy, orderBy).then((data) => {
       setReviews(data);
       setIsLoading(false);
     });
-  }, [category]);
+  }, [searchParams]);
 
   return (
     <div>
-      <CategoryDropDown/>
+      <SortBy />
       {isLoading ? (
         <p>Loading items...</p>
       ) : (
-        <div>
+        <div className="reviewBox">
           {reviews.map((review) => {
             return (
-              <div key={review.review_id}>
+              <div className="allReviews" key={review.review_id}>
                 <Link to={`/review/${review.review_id}`}>
                   <Review review={review} />
                 </Link>

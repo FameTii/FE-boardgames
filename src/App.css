@@ -1,29 +1,45 @@
-.displayReviewsBox {
-  width: 90vw;
-  margin: 5px auto 5px auto;
-  border: 2px solid #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 3px #aebe94;
-  background-color: white;
-  display: grid;
-  grid-template-columns: 30vw 35vw auto;
-  grid-template-rows: 10vw 15vw auto auto;
-  grid-template-areas:
-    "owner date date"
-    "title title title"
-    "image image image"
-    "category designer votes";
+#root {
+  background-color: rgb(255, 238, 139);
+  font-family: "Alegreya Sans", sans-serif;
 }
 
-.individualReview {
-  width: 90vw;
-  height: auto;
-  margin: 5px auto 5px auto;
+.headerBox {
+  color: rgb(93, 38, 137);
+  text-align: center;
+  font-size: 2em;
+}
+
+.displayReviewsBox {
+  width: 300px;
+  border-radius: 10px;
+  height: 500px;
+  background-color: white;
+  text-align: center;
+  margin: 0.5em;
+  border: 2px solid;
+  padding: 10px;
+  box-shadow: 6px 4px 8px;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.title {
+  grid-area: title;
+  margin-top: 5px;
+  font-size: 2em;
+  font-weight: bold;
+  height: 100px;
+  overflow: wrap;
+}
+
+.image {
+  height: 35%;
+  max-width: 280px;
+  margin-top: -23px;
+  border-radius: 10px;
 }
 
 .owner {
@@ -34,21 +50,12 @@ a {
   grid-area: date;
 }
 
-.title {
-  grid-area: title;
-}
-
 .category {
   grid-area: category;
 }
 
 .designer {
   grid-area: designer;
-}
-
-.image {
-  grid-area: image;
-  max-block-size: 30vw;
 }
 
 .review {
@@ -69,13 +76,76 @@ a {
   background-color: lightblue;
 }
 .commentsBox {
-  width: 90vw;
-  margin: 5px auto 5px auto;
-  border: 2px solid #ffffff;
+  margin-top: 10px;
+  background-color: aliceblue;
+  border: 2px solid;
+  padding: 10px;
   border-radius: 10px;
-  box-shadow: 0px 0px 3px #aebe94;
+  justify-content: center;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 #commentAuthor {
   font-weight: bold;
+}
+
+.sortBox {
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  background-color: black;
+  margin-left: 5%;
+  margin-right: 5%;
+  flex-wrap: wrap;
+}
+
+.childSortBox {
+  margin: 10px 20px 10px 20px;
+}
+
+.reviewBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+button {
+  border-radius: 6px;
+  color: rgb(93, 38, 137);
+}
+
+.individualReview {
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px solid;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.individualImage {
+  width: 80%;
+  border-radius: 10px;
+  margin-top: -30px;
+  border-radius: 6px;
+}
+
+.individualTitle {
+  color: rgb(93, 38, 137);
+  font-size: 300%;
+  font-weight: bolder;
+}
+.indRevMain {
+  width: 50%;
+  min-width: 400px;
+  text-align: center;
+}
+.indRevSub {
+  width: 50%;
+  min-width: 400px;
 }

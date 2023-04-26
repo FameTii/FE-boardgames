@@ -1,9 +1,11 @@
-import "./Header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="headerBox">
-      <h1>Boardgame Reviews</h1>
+      <Link to={"/"}>
+        <h1>Boardgame Reviews</h1>
+      </Link>
     </div>
   );
 };
