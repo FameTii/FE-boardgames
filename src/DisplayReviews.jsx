@@ -26,7 +26,7 @@ const DisplayReviews = () => {
     <div>
       <SortBy />
       {isLoading ? (
-        <p>Loading items...</p>
+        <p>This page loads.. It just needs some time...</p>
       ) : (
         <div className="reviewBox">
           {reviews.map((review) => {
